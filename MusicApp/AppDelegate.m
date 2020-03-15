@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "DiscoverViewController.h"
+#import "MyMusicViewController.h"
+#import "LocalViewController.h"
 
 
 @interface AppDelegate ()
@@ -22,8 +25,17 @@
     
     [self setWindow:[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds]];
     [self.window makeKeyAndVisible];
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController: [[ViewController alloc]init]];
-    [self.window setRootViewController:navi];
+    
+    UITabBarController *tab = [[UITabBarController alloc] init];
+    [self.window setRootViewController:tab];
+    
+    DiscoverViewController *dicover = [[DiscoverViewController alloc] init];
+    MyMusicViewController *my = [[MyMusicViewController alloc] init];
+    LocalViewController *local = [[LocalViewController alloc] init];
+    
+
+    tab.viewControllers = @[dicover,my,local];
+    
     return YES;
 }
 

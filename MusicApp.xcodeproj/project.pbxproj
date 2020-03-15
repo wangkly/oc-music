@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91703BC5241DD8D0001E7DBF /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91703BC4241DD8D0001E7DBF /* DiscoverViewController.m */; };
+		91703BC8241DD8E1001E7DBF /* MyMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91703BC7241DD8E1001E7DBF /* MyMusicViewController.m */; };
+		91703BCB241DD91B001E7DBF /* LocalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91703BCA241DD91B001E7DBF /* LocalViewController.m */; };
 		B118B3C4239515400010706F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B118B3C3239515400010706F /* AppDelegate.m */; };
 		B118B3C7239515400010706F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B118B3C6239515400010706F /* ViewController.m */; };
 		B118B3CA239515400010706F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B118B3C8239515400010706F /* Main.storyboard */; };
@@ -38,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		91703BC3241DD8D0001E7DBF /* DiscoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		91703BC4241DD8D0001E7DBF /* DiscoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		91703BC6241DD8E1001E7DBF /* MyMusicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMusicViewController.h; sourceTree = "<group>"; };
+		91703BC7241DD8E1001E7DBF /* MyMusicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMusicViewController.m; sourceTree = "<group>"; };
+		91703BC9241DD91B001E7DBF /* LocalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalViewController.h; sourceTree = "<group>"; };
+		91703BCA241DD91B001E7DBF /* LocalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalViewController.m; sourceTree = "<group>"; };
 		B118B3BF239515400010706F /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B118B3C2239515400010706F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B118B3C3239515400010706F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -86,6 +95,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		91703BC2241DD749001E7DBF /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				91703BC3241DD8D0001E7DBF /* DiscoverViewController.h */,
+				91703BC4241DD8D0001E7DBF /* DiscoverViewController.m */,
+				91703BC6241DD8E1001E7DBF /* MyMusicViewController.h */,
+				91703BC7241DD8E1001E7DBF /* MyMusicViewController.m */,
+				91703BC9241DD91B001E7DBF /* LocalViewController.h */,
+				91703BCA241DD91B001E7DBF /* LocalViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
 		B118B3B62395153F0010706F = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +131,7 @@
 		B118B3C1239515400010706F /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				91703BC2241DD749001E7DBF /* controller */,
 				B118B3F5239528040010706F /* model */,
 				B118B3F4239527FA0010706F /* view */,
 				B118B3C2239515400010706F /* AppDelegate.h */,
@@ -296,7 +319,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B118B3C7239515400010706F /* ViewController.m in Sources */,
+				91703BC5241DD8D0001E7DBF /* DiscoverViewController.m in Sources */,
+				91703BCB241DD91B001E7DBF /* LocalViewController.m in Sources */,
 				B118B3D2239515400010706F /* main.m in Sources */,
+				91703BC8241DD8E1001E7DBF /* MyMusicViewController.m in Sources */,
 				B118B3C4239515400010706F /* AppDelegate.m in Sources */,
 				B118B3F923952DBF0010706F /* PlayListCell.m in Sources */,
 				B1B747242396678000B965B9 /* PlaylistItem.m in Sources */,
