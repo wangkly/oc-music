@@ -56,4 +56,16 @@
     // Initialization code
 }
 
+
+-(void)loadImageData{
+    dispatch_queue_t queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_async(queue, ^{
+        NSLog(@"dispatch_queue=====>%@",[NSThread currentThread]);
+        
+        
+    });
+    
+}
+
 @end

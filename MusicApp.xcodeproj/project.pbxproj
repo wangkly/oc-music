@@ -20,6 +20,7 @@
 		B118B3E7239515400010706F /* MusicAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B118B3E6239515400010706F /* MusicAppUITests.m */; };
 		B118B3F923952DBF0010706F /* PlayListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B118B3F723952DBF0010706F /* PlayListCell.m */; };
 		B118B3FA23952DBF0010706F /* PlayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B118B3F823952DBF0010706F /* PlayListCell.xib */; };
+		B15ADBCA242CB26600C8EC47 /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15ADBC9242CB26600C8EC47 /* BannerView.m */; };
 		B1B747242396678000B965B9 /* PlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B747232396678000B965B9 /* PlaylistItem.m */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,8 @@
 		B118B3F623952DBF0010706F /* PlayListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayListCell.h; sourceTree = "<group>"; };
 		B118B3F723952DBF0010706F /* PlayListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayListCell.m; sourceTree = "<group>"; };
 		B118B3F823952DBF0010706F /* PlayListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayListCell.xib; sourceTree = "<group>"; };
+		B15ADBC8242CB26600C8EC47 /* BannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
+		B15ADBC9242CB26600C8EC47 /* BannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerView.m; sourceTree = "<group>"; };
 		B1B747222396678000B965B9 /* PlaylistItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistItem.h; sourceTree = "<group>"; };
 		B1B747232396678000B965B9 /* PlaylistItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +174,8 @@
 				B118B3F623952DBF0010706F /* PlayListCell.h */,
 				B118B3F723952DBF0010706F /* PlayListCell.m */,
 				B118B3F823952DBF0010706F /* PlayListCell.xib */,
+				B15ADBC8242CB26600C8EC47 /* BannerView.h */,
+				B15ADBC9242CB26600C8EC47 /* BannerView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 			files = (
 				B118B3C7239515400010706F /* ViewController.m in Sources */,
 				91703BC5241DD8D0001E7DBF /* DiscoverViewController.m in Sources */,
+				B15ADBCA242CB26600C8EC47 /* BannerView.m in Sources */,
 				91703BCB241DD91B001E7DBF /* LocalViewController.m in Sources */,
 				B118B3D2239515400010706F /* main.m in Sources */,
 				91703BC8241DD8E1001E7DBF /* MyMusicViewController.m in Sources */,
