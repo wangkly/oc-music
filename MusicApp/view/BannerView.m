@@ -7,6 +7,7 @@
 //
 
 #import "BannerView.h"
+static UIEdgeInsets const DefaultEdgInsets={10,10,10,10};
 
 @implementation BannerView
 
@@ -17,6 +18,7 @@
     [bannerView.scrollView setPagingEnabled:YES];
     [bannerView.scrollView setShowsHorizontalScrollIndicator:NO];
     [bannerView.scrollView setDelegate:bannerView];
+//    bannerView.scrollView.layer.cornerRadius = 10;
     [bannerView addSubview:bannerView.scrollView];
     [bannerView setPageCtrl:[[UIPageControl alloc] init] ];
     [bannerView addSubview:bannerView.pageCtrl];
@@ -74,11 +76,16 @@
 }
 
 -(void)pageControlValueChange:(UIPageControl *)pageControl {
-    CGFloat width = CGRectGetWidth(self.frame);
-    NSInteger page =  pageControl.currentPage;
-    NSLog(@"pageControlValueChange %d",page);
-    [self.scrollView setContentOffset:CGPointMake(page * width, 0) animated:YES];
-    
+//    CGFloat width = CGRectGetWidth(self.frame);
+//    NSInteger page =  self.pageCtrl.currentPage;
+//    if(self.timer){
+//        [self.timer invalidate];
+//        self.timer = nil;
+//    }
+//
+//    [self.scrollView setContentOffset:CGPointMake(page * width, 0) animated:YES];
+//
+//    [self initTimer];
 }
 
 

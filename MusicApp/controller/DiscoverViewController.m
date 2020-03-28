@@ -33,7 +33,8 @@
     UIButton *btn =  [UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame =CGRectMake(100, 200, 100, 50);
     [btn setTitle:@"确定" forState:UIControlStateNormal];
-    [btn setTitle:@"摸我干啥" forState:UIControlStateHighlighted];
+//    [btn setTitle:@"摸我干啥" forState:UIControlStateHighlighted];
+    [btn addTarget:self action:@selector(presentPlaylistController) forControlEvents:UIControlEventTouchUpInside];
 //    btn.backgroundColor = [UIColor grayColor];
     //设置文字颜色
     [btn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
@@ -51,7 +52,7 @@
 
 
 -(void) loadData{
-    NSURL *url = [NSURL URLWithString:@"http://172.19.3.18:3000/banner"];
+    NSURL *url = [NSURL URLWithString:@"http://172.19.3.54:3000/banner"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url ];
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -73,6 +74,13 @@
 -(void)initBanner{
     self.bannerView = [BannerView initHeaderView];
     [self.view addSubview:self.bannerView];
+}
+
+-(void)presentPlaylistController{
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[PlaylistController alloc] init]];
+    [self presentViewController: navi animated:YES completion:^{
+        NSLog(@"presentViewController");
+    }];
 }
 
 /*
