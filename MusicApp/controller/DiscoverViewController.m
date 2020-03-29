@@ -28,6 +28,7 @@
     CGFloat height = CGRectGetHeight(frame);
     [self initBanner];
     [self loadData];
+    [self createCacheImageDir];
    
     
     UIButton *btn =  [UIButton buttonWithType:UIButtonTypeSystem];
@@ -50,9 +51,22 @@
     // Do any additional setup after loading the view.
 }
 
+/**
+ *创建图片缓存目录
+ */
+-(void)createCacheImageDir{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSLog(@"img cache path %@",path);
+    NSString *diskCachePath = [[path objectAtIndex:0 ] stringByAppendingPathComponent:@"imageCache"];
+    NSLog(@"diskCachePath:%@",diskCachePath);
+    if(![[NSFileManager defaultManager]fileExistsAtPath:diskCachePath] ){
+        [[NSFileManager defaultManager] createDirectoryAtPath:diskCachePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
 
 -(void) loadData{
-    NSURL *url = [NSURL URLWithString:@"http://172.19.3.54:3000/banner"];
+    NSURL *url = [NSURL URLWithString:@"http://192.168.1.104:3000/banner"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url ];
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -77,7 +91,7 @@
 }
 
 -(void)presentPlaylistController{
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[PlaylistController alloc] init]];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
     [self presentViewController: navi animated:YES completion:^{
         NSLog(@"presentViewController");
     }];

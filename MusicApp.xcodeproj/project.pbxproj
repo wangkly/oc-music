@@ -21,7 +21,6 @@
 		B118B3F923952DBF0010706F /* PlayListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B118B3F723952DBF0010706F /* PlayListCell.m */; };
 		B118B3FA23952DBF0010706F /* PlayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B118B3F823952DBF0010706F /* PlayListCell.xib */; };
 		B15ADBCA242CB26600C8EC47 /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15ADBC9242CB26600C8EC47 /* BannerView.m */; };
-		B1A20032242F469A007FCDB4 /* PlaylistController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A20031242F469A007FCDB4 /* PlaylistController.m */; };
 		B1B747242396678000B965B9 /* PlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B747232396678000B965B9 /* PlaylistItem.m */; };
 /* End PBXBuildFile section */
 
@@ -70,8 +69,6 @@
 		B118B3F823952DBF0010706F /* PlayListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayListCell.xib; sourceTree = "<group>"; };
 		B15ADBC8242CB26600C8EC47 /* BannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
 		B15ADBC9242CB26600C8EC47 /* BannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerView.m; sourceTree = "<group>"; };
-		B1A20030242F469A007FCDB4 /* PlaylistController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistController.h; sourceTree = "<group>"; };
-		B1A20031242F469A007FCDB4 /* PlaylistController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistController.m; sourceTree = "<group>"; };
 		B1B747222396678000B965B9 /* PlaylistItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistItem.h; sourceTree = "<group>"; };
 		B1B747232396678000B965B9 /* PlaylistItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,14 +101,14 @@
 		91703BC2241DD749001E7DBF /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				B118B3C5239515400010706F /* ViewController.h */,
+				B118B3C6239515400010706F /* ViewController.m */,
 				91703BC3241DD8D0001E7DBF /* DiscoverViewController.h */,
 				91703BC4241DD8D0001E7DBF /* DiscoverViewController.m */,
 				91703BC6241DD8E1001E7DBF /* MyMusicViewController.h */,
 				91703BC7241DD8E1001E7DBF /* MyMusicViewController.m */,
 				91703BC9241DD91B001E7DBF /* LocalViewController.h */,
 				91703BCA241DD91B001E7DBF /* LocalViewController.m */,
-				B1A20030242F469A007FCDB4 /* PlaylistController.h */,
-				B1A20031242F469A007FCDB4 /* PlaylistController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -144,8 +141,6 @@
 				B118B3F4239527FA0010706F /* view */,
 				B118B3C2239515400010706F /* AppDelegate.h */,
 				B118B3C3239515400010706F /* AppDelegate.m */,
-				B118B3C5239515400010706F /* ViewController.h */,
-				B118B3C6239515400010706F /* ViewController.m */,
 				B118B3C8239515400010706F /* Main.storyboard */,
 				B118B3CB239515400010706F /* Assets.xcassets */,
 				B118B3CD239515400010706F /* LaunchScreen.storyboard */,
@@ -328,7 +323,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1A20032242F469A007FCDB4 /* PlaylistController.m in Sources */,
 				B118B3C7239515400010706F /* ViewController.m in Sources */,
 				91703BC5241DD8D0001E7DBF /* DiscoverViewController.m in Sources */,
 				B15ADBCA242CB26600C8EC47 /* BannerView.m in Sources */,
@@ -501,6 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3K5BT86RAK;
 				INFOPLIST_FILE = MusicApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wangkly.MusicApp;
@@ -514,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3K5BT86RAK;
 				INFOPLIST_FILE = MusicApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wangkly.MusicApp;

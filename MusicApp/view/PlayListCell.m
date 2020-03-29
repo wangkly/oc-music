@@ -46,8 +46,24 @@
 }
 
 -(void)setImage:(NSString *)image andTitle:(NSString *)title{
-    
     self.title.text = title;
+    NSLog(@"setImage== %@",image);
+    NSArray *path =NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *fullPath  =[NSString stringWithFormat:@"%@%@", @"/imageCache/",image];
+    NSString *localPath = [[path objectAtIndex:0] stringByAppendingPathComponent:fullPath];
+    NSLog(@"localPath====%@",localPath);
+    if([[NSFileManager defaultManager] fileExistsAtPath:localPath]){
+        
+        NSData * data =[NSData dataWithContentsOfFile:localPath];
+        self.cover.image =[UIImage imageWithData:data];
+        
+    }else{
+        
+        [self loadImageData:image];
+    }
+    
+    
+
 }
 
 - (void)awakeFromNib {
@@ -57,12 +73,26 @@
 }
 
 
--(void)loadImageData{
+-(void)loadImageData:(NSString *)imgUrl{
     dispatch_queue_t queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_CONCURRENT);
     
     dispatch_async(queue, ^{
         NSLog(@"dispatch_queue=====>%@",[NSThread currentThread]);
+        NSURL *url = [NSURL URLWithString:imgUrl];
+        NSData *data =[NSData dataWithContentsOfURL:url];
         
+        NSArray *path =NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *fullPath  =[NSString stringWithFormat:@"%@%@", @"/imageCache/",imgUrl];
+        NSString *localPath = [[path objectAtIndex:0] stringByAppendingPathComponent:fullPath];
+        if(data){
+            if(![[NSFileManager defaultManager] fileExistsAtPath:localPath]){
+                [[NSFileManager defaultManager] createFileAtPath:localPath contents:data attributes:nil];
+            }
+        }
+        UIImage  *image = [UIImage imageWithData:data];
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            self.cover.image = image;
+        }];
         
     });
     

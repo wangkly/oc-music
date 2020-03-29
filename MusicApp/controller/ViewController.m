@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "view/PlayListCell.h"
+#import "PlayListCell.h"
 #import "PlaylistItem.h"
 
 static NSString const *identifier = @"myCell";
@@ -28,7 +28,9 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self setTitle:@"音乐"];
+    [self setTitle:@"歌单"];
+    
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back:)] animated:YES];
     
     CGFloat width = (CGRectGetWidth(self.view.bounds)-defaultEdgeInsets.left-defaultEdgeInsets.right- (defaultColumnCount - 1)* defaultColumnSpace)/defaultColumnCount;
     
@@ -54,6 +56,11 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
     
 }
 
+-(void)back:(id *)sender{
+    NSLog(@"back");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
@@ -77,7 +84,7 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
 
 
 -(void)loadData{
-    NSURL *url = [[NSURL alloc]initWithString:@"http://172.19.8.49:3000/top/playlist"];
+    NSURL *url = [[NSURL alloc]initWithString:@"http://192.168.1.104:3000/top/playlist"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     
     NSURLSession * session = [NSURLSession sharedSession];
@@ -94,9 +101,10 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
         }
         
         self.dataSource = [temp mutableCopy];
-        [self.playList reloadData];
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            [self.playList reloadData];
+        }];
         
-        NSLog(@"----> %@",self.dataSource);
   }];
     
     [task resume];
