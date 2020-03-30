@@ -16,9 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setTitle:@"我的音乐"];
-    self.tabBarItem.image=[UIImage imageNamed:@"music"];
+
     [self.view setBackgroundColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
 }

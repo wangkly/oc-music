@@ -12,6 +12,7 @@
 #import "MyMusicViewController.h"
 #import "LocalViewController.h"
 
+char * host = "http://172.19.3.32:3000";
 
 @interface AppDelegate ()
 
@@ -30,13 +31,36 @@
     [self.window setRootViewController:tab];
     
     DiscoverViewController *dicover = [[DiscoverViewController alloc] init];
+    [dicover setTitle:@"发现"];
+    dicover.tabBarItem.image=[UIImage imageNamed:@"discovery"];
     MyMusicViewController *my = [[MyMusicViewController alloc] init];
+    [my setTitle:@"我的音乐"];
+    my.tabBarItem.image=[UIImage imageNamed:@"music"];
     LocalViewController *local = [[LocalViewController alloc] init];
-    
+    [local setTitle:@"本地音乐"];
+    local.tabBarItem.image=[UIImage imageNamed:@"my"];
 
     tab.viewControllers = @[dicover,my,local];
     
+    [self createCacheImageDir];
+    
     return YES;
+}
+
+/**
+ *创建图片缓存目录
+ */
+-(void)createCacheImageDir{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSLog(@"img cache path %@",path);
+    NSString *diskCachePath = [[path objectAtIndex:0 ] stringByAppendingPathComponent:@"imageCache"];
+    NSLog(@"diskCachePath:%@",diskCachePath);
+   
+    if(![[NSFileManager defaultManager]fileExistsAtPath:diskCachePath] ){
+       BOOL boo = [[NSFileManager defaultManager] createDirectoryAtPath:diskCachePath withIntermediateDirectories:YES attributes:nil error:nil];
+        
+        NSLog(@"boo----,%@",boo);
+    }
 }
 
 

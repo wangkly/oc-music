@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "PlayListCell.h"
 #import "PlaylistItem.h"
-
+extern char *host;
 static NSString const *identifier = @"myCell";
 static NSInteger const defaultColumnCount = 2;
 static CGFloat const defaultColumnSpace = 10;
@@ -84,7 +84,7 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
 
 
 -(void)loadData{
-    NSURL *url = [[NSURL alloc]initWithString:@"http://192.168.1.104:3000/top/playlist"];
+    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%s%@",host,@"/top/playlist"]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     
     NSURLSession * session = [NSURLSession sharedSession];

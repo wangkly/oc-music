@@ -48,10 +48,10 @@
 -(void)setImage:(NSString *)image andTitle:(NSString *)title{
     self.title.text = title;
     NSLog(@"setImage== %@",image);
+    NSString *str = [image lastPathComponent];
     NSArray *path =NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *fullPath  =[NSString stringWithFormat:@"%@%@", @"/imageCache/",image];
+    NSString *fullPath  =[NSString stringWithFormat:@"%@%@", @"/imageCache/",str];
     NSString *localPath = [[path objectAtIndex:0] stringByAppendingPathComponent:fullPath];
-    NSLog(@"localPath====%@",localPath);
     if([[NSFileManager defaultManager] fileExistsAtPath:localPath]){
         
         NSData * data =[NSData dataWithContentsOfFile:localPath];
@@ -75,18 +75,18 @@
 
 -(void)loadImageData:(NSString *)imgUrl{
     dispatch_queue_t queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_CONCURRENT);
-    
+    NSString *str = [imgUrl lastPathComponent];
     dispatch_async(queue, ^{
-        NSLog(@"dispatch_queue=====>%@",[NSThread currentThread]);
         NSURL *url = [NSURL URLWithString:imgUrl];
         NSData *data =[NSData dataWithContentsOfURL:url];
         
         NSArray *path =NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *fullPath  =[NSString stringWithFormat:@"%@%@", @"/imageCache/",imgUrl];
+        NSString *fullPath  =[NSString stringWithFormat:@"%@%@", @"/imageCache/",str];
         NSString *localPath = [[path objectAtIndex:0] stringByAppendingPathComponent:fullPath];
         if(data){
             if(![[NSFileManager defaultManager] fileExistsAtPath:localPath]){
-                [[NSFileManager defaultManager] createFileAtPath:localPath contents:data attributes:nil];
+
+               BOOL boo =  [[NSFileManager defaultManager] createFileAtPath:localPath contents:data attributes:nil];
             }
         }
         UIImage  *image = [UIImage imageWithData:data];

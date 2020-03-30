@@ -7,7 +7,7 @@
 //
 
 #import "DiscoverViewController.h"
-
+extern char *host;
 @interface DiscoverViewController ()
 
 @property(nonatomic,strong) BannerView * bannerView;
@@ -19,8 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTitle:@"发现"];
-    self.tabBarItem.image=[UIImage imageNamed:@"discovery"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     CGRect frame = self.view.bounds;
@@ -28,8 +26,6 @@
     CGFloat height = CGRectGetHeight(frame);
     [self initBanner];
     [self loadData];
-    [self createCacheImageDir];
-   
     
     UIButton *btn =  [UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame =CGRectMake(100, 200, 100, 50);
@@ -51,22 +47,9 @@
     // Do any additional setup after loading the view.
 }
 
-/**
- *创建图片缓存目录
- */
--(void)createCacheImageDir{
-    NSArray *path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSLog(@"img cache path %@",path);
-    NSString *diskCachePath = [[path objectAtIndex:0 ] stringByAppendingPathComponent:@"imageCache"];
-    NSLog(@"diskCachePath:%@",diskCachePath);
-    if(![[NSFileManager defaultManager]fileExistsAtPath:diskCachePath] ){
-        [[NSFileManager defaultManager] createDirectoryAtPath:diskCachePath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-}
-
 
 -(void) loadData{
-    NSURL *url = [NSURL URLWithString:@"http://192.168.1.104:3000/banner"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%s%@",host, @"/banner"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url ];
     NSURLSession *session = [NSURLSession sharedSession];
     
