@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface PlaylistItem : NSObject
-
+@property long id;
 @property(nonatomic,strong)NSString *coverImgUrl;
 @property(nonatomic,strong) NSString *name;
 

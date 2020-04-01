@@ -11,12 +11,14 @@
 #import "PlaylistItem.h"
 extern char *host;
 static NSString const *identifier = @"myCell";
-static NSInteger const defaultColumnCount = 2;
+static NSInteger const defaultColumnCount = 3;
 static CGFloat const defaultColumnSpace = 10;
 static CGFloat const defaultRowSpace = 10;
 static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
+static long offset = 0;
+static long limit = 30;
 
-@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,strong) NSMutableArray *dataSource;
 @property(nonatomic,strong) UICollectionView *playList;
@@ -36,7 +38,7 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    layout.itemSize = CGSizeMake(width, 250);
+    layout.itemSize = CGSizeMake(width, 150);
     layout.minimumLineSpacing = 10;
     layout.minimumInteritemSpacing = 1;
     layout.sectionInset = defaultEdgeInsets;
@@ -51,7 +53,7 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
     [self.playList setDataSource:self];
     
     [self.view addSubview:self.playList];
-    
+    self.dataSource  = [NSMutableArray array];
     [self loadData];
     
 }
@@ -84,7 +86,7 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
 
 
 -(void)loadData{
-    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%s%@",host,@"/top/playlist"]];
+    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%s%@?offset=%ld&limit=%ld",host,@"/top/playlist",offset,limit]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     
     NSURLSession * session = [NSURLSession sharedSession];
@@ -100,7 +102,8 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
             [temp addObject:item];
         }
         
-        self.dataSource = [temp mutableCopy];
+        [self.dataSource addObjectsFromArray:[temp mutableCopy]];
+        offset++;
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             [self.playList reloadData];
         }];
@@ -114,6 +117,35 @@ static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma UICollectionViewDelegate
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    PlaylistItem *item = [self.dataSource objectAtIndex:indexPath.row];
+    NSLog(@"indexPath===%@",[item valueForKey:@"_id"]);
+   
+    PlaylistDetailController *detail =[[PlaylistDetailController alloc] init];
+    detail.detailId = [item valueForKey:@"_id"];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:detail];
+    
+    [self presentViewController:navi animated:YES completion:^{
+        NSLog(@"present===PlaylistDetailController");
+    }];
+    
+}
+
+#pragma UIScrollViewDelegate
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    float endScrolling = (scrollView.contentOffset.y + scrollView.frame.size.height);
+    if (endScrolling >= scrollView.contentSize.height){
+        NSLog(@"==scrollViewDidEndDecelerating===end");
+        [self loadData];
+    }
+        
+    
+    
 }
 
 
