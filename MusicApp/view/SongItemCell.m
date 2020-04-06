@@ -12,7 +12,7 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
    self =  [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    [self setNameLabel:[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 20) ] ];
+    [self setNameLabel:[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 20) ] ];
     [self.contentView addSubview:self.nameLabel];
     return self;
 }

@@ -12,7 +12,7 @@
 #import "MyMusicViewController.h"
 #import "LocalViewController.h"
 
-char * host = "http://172.19.3.33:3000";
+char * host = "http://192.168.1.103:3000";
 
 @interface AppDelegate ()
 

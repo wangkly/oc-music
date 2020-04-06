@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PlayController.h"
 @interface PlaylistDetailController : UIViewController
 @property(nonatomic,strong) NSString *detailId;
 @end

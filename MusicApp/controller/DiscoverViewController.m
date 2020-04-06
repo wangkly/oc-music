@@ -29,7 +29,7 @@ extern char *host;
     
     UIButton *btn =  [UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame =CGRectMake(100, 200, 100, 50);
-    [btn setTitle:@"确定" forState:UIControlStateNormal];
+    [btn setTitle:@"歌单" forState:UIControlStateNormal];
 //    [btn setTitle:@"摸我干啥" forState:UIControlStateHighlighted];
     [btn addTarget:self action:@selector(presentPlaylistController) forControlEvents:UIControlEventTouchUpInside];
 //    btn.backgroundColor = [UIColor grayColor];

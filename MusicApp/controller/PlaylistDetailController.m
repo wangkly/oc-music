@@ -83,11 +83,38 @@ static NSString const *identifier = @"myCell";
 
 #pragma tablviewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    return 60;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    SongItem *select =  [self.dataSource objectAtIndex:indexPath.row];
+    long songId = select.id;
+    NSString *str = [NSString stringWithFormat:@"%s%@%ld",host,@"/song/url?id=",songId];
+    NSURL *url = [NSURL URLWithString:str];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+       NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSArray *arr = [dict valueForKey:@"data"];
+        NSDictionary *first =[arr firstObject];
+        NSString *songUrl = [first valueForKey:@"url"];
+        NSLog(@"songUrl ====>%@",songUrl);
+        
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            
+            PlayController *cotrl = [[PlayController alloc] init];
+            [cotrl setSongUrl:songUrl];
+            [self presentViewController:[[UINavigationController alloc]initWithRootViewController: cotrl] animated:YES completion:^{
+ 
+            }];
+            
+            
+        }];
+        
+    }];
     
+    [task resume];
     
 }
 
