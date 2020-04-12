@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BannerView.h"
 #import "ViewController.h"
+#import "PlaylistGroundController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DiscoverViewController : UIViewController

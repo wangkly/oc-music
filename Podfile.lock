@@ -1,0 +1,16 @@
+PODS:
+  - WMPageController (2.4.3)
+
+DEPENDENCIES:
+  - WMPageController (~> 2.4.0)
+
+SPEC REPOS:
+  trunk:
+    - WMPageController
+
+SPEC CHECKSUMS:
+  WMPageController: 4c7f2c636675a71aea5eecf8fdc07a0ce86954e3
+
+PODFILE CHECKSUM: 3a6ccce0a656e91c962ffe74d765b20eb9000a6e
+
+COCOAPODS: 1.9.0

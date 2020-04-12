@@ -43,6 +43,13 @@ extern char *host;
     UIImageView * image = [[UIImageView alloc ]initWithImage:[UIImage imageNamed:@"dog"]];
     image.frame =CGRectMake(100, 300, 100, 100);
     [self.view addSubview:image];
+    
+    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn2.frame = CGRectMake(250, 200, 100, 50);
+    [btn2 setTitle:@"跳转" forState:UIControlStateNormal];
+    [btn2 addTarget:self action:@selector(navigate:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:btn2];
 
     // Do any additional setup after loading the view.
 }
@@ -78,6 +85,13 @@ extern char *host;
     [self presentViewController: navi animated:YES completion:^{
         NSLog(@"presentViewController");
     }];
+}
+
+
+
+-(void)navigate:(id)sender{
+    [self presentViewController:[[PlaylistGroundController alloc] init]  animated:YES completion:nil];
+
 }
 
 /*
