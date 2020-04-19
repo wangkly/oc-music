@@ -8,7 +8,10 @@
 
 #import "PlaylistGroundController.h"
 #import "ViewController.h"
+extern char * host;
+
 @interface PlaylistGroundController ()<WMPageControllerDataSource>
+
 
 @end
 
@@ -16,29 +19,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setTitle:@"歌单广场"];
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back)] animated:YES ];
     // Do any additional setup after loading the view.
 }
+
+-(void)back{
+ 
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//-(NSArray *)_hotCats{
+//    if(_hotCats == nil){
+//        _hotCats = [self queryHotCats];
+//    }
+//    return _hotCats;
+//}
+
+
 
 
 #pragma "WMPageControllerDataSource"
 
 -(NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController{
-    
-    return 3;
+    NSLog(@"=====count=====");
+    return _hotCats.count;
 }
 
 -(UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
-    
-    UIViewController *view = [[ViewController alloc] init];
+    NSLog(@"=====view=====");
+    ViewController *view = [[ViewController alloc] init];
+    NSDictionary *dict = [_hotCats objectAtIndex:index];
+    if(![[dict valueForKey:@"name"] isEqualToString:@"推荐" ]){
+     view.cats = [dict valueForKey:@"name"];
+    }
+    view.offset = 0;
     
     return view;
 }
 
 
 -(NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index{
-    
-    return [NSString stringWithFormat:@"%ld",(long)index];
-    
+    NSDictionary *dict = [_hotCats objectAtIndex:index];
+    NSLog(@"=====name=====");
+    return [dict valueForKey:@"name"];
 }
 
 

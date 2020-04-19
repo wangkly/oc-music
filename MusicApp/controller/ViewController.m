@@ -15,7 +15,7 @@ static NSInteger const defaultColumnCount = 3;
 static CGFloat const defaultColumnSpace = 10;
 static CGFloat const defaultRowSpace = 10;
 static UIEdgeInsets const defaultEdgeInsets = {10,10,10,10};
-static long offset = 0;
+
 static long limit = 30;
 
 @interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate>
@@ -86,7 +86,13 @@ static long limit = 30;
 
 
 -(void)loadData{
-    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%s%@?offset=%ld&limit=%ld",host,@"/top/playlist",offset,limit]];
+    NSString *str = [NSString stringWithFormat:@"%s%@",host,@"/top/playlist?"];
+    if(self.cats){
+        str =[NSString stringWithFormat:@"%@%@%@&",str,@"cat=",[self.cats stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    }
+    NSString *temp = [NSString stringWithFormat:@"%@offset=%ld&limit=%ld",str,self.offset,limit];
+    NSLog(@"viewController====url>%@",temp);
+    NSURL *url = [[NSURL alloc]initWithString:temp];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     
     NSURLSession * session = [NSURLSession sharedSession];
@@ -103,7 +109,7 @@ static long limit = 30;
         }
         
         [self.dataSource addObjectsFromArray:[temp mutableCopy]];
-        offset++;
+        self.offset++;
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             [self.playList reloadData];
         }];

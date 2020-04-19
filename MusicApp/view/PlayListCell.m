@@ -11,14 +11,12 @@
 @implementation PlayListCell
 
 -(instancetype)init{
-    NSLog(@"====init====");
     PlayListCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"PlayListCell" owner:self options:nil] lastObject];
     
     return cell;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
-    NSLog(@"====initWithFrame====");
     self = [super initWithFrame: frame];
     if(self){
         CGFloat width = CGRectGetWidth(frame);
@@ -47,7 +45,6 @@
 
 -(void)setImage:(NSString *)image andTitle:(NSString *)title{
     self.title.text = title;
-    NSLog(@"setImage== %@",image);
     NSString *str = [image lastPathComponent];
     NSArray *path =NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *fullPath  =[NSString stringWithFormat:@"%@%@", @"/imageCache/",str];
@@ -67,7 +64,6 @@
 }
 
 - (void)awakeFromNib {
-    NSLog(@"====awakeFromNib====");
     [super awakeFromNib];
     // Initialization code
 }

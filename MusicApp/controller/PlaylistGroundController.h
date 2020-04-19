@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlaylistGroundController : WMPageController
-
+@property(strong,nonatomic) NSArray * hotCats;
 @end
 
 NS_ASSUME_NONNULL_END

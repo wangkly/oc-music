@@ -31,7 +31,7 @@ extern char *host;
     btn.frame =CGRectMake(100, 200, 100, 50);
     [btn setTitle:@"歌单" forState:UIControlStateNormal];
 //    [btn setTitle:@"摸我干啥" forState:UIControlStateHighlighted];
-    [btn addTarget:self action:@selector(presentPlaylistController) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(navigate:) forControlEvents:UIControlEventTouchUpInside];
 //    btn.backgroundColor = [UIColor grayColor];
     //设置文字颜色
     [btn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
@@ -47,7 +47,7 @@ extern char *host;
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
     btn2.frame = CGRectMake(250, 200, 100, 50);
     [btn2 setTitle:@"跳转" forState:UIControlStateNormal];
-    [btn2 addTarget:self action:@selector(navigate:) forControlEvents:UIControlEventTouchUpInside];
+    [btn2 addTarget:self action:@selector(presentPlaylistController) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:btn2];
 
@@ -90,9 +90,37 @@ extern char *host;
 
 
 -(void)navigate:(id)sender{
-    [self presentViewController:[[PlaylistGroundController alloc] init]  animated:YES completion:nil];
-
+    NSString *str = [NSString stringWithFormat:@"%s%@",host,@"/playlist/hot"];
+    NSURL *url = [NSURL URLWithString:str];
+    NSURLRequest *request = [NSURLRequest requestWithURL: url];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        NSArray * cats = [json valueForKey:@"tags"];
+        
+        NSMutableArray *temp = [NSMutableArray array];
+        
+        [temp addObject:@{@"name": @"推荐"}];
+        [temp addObjectsFromArray:cats];
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+          
+            PlaylistGroundController* controller = [[PlaylistGroundController alloc] init];
+            [controller setHotCats:temp];
+            [self presentViewController: [[UINavigationController alloc] initWithRootViewController:controller] animated:YES completion:nil];
+        }];
+    }];
+    
+    [task resume];
+  
 }
+
+
+
+
 
 /*
 #pragma mark - Navigation

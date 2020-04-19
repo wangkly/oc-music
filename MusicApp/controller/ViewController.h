@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PlaylistDetailController.h"
 @interface ViewController : UIViewController
-
-
+@property(nonatomic,strong) NSString *cats;
+@property(nonatomic) NSInteger offset;
 @end
 
