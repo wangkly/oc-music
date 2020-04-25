@@ -30,9 +30,9 @@ static long limit = 30;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self setTitle:@"歌单广场"];
+//    [self setTitle:@"歌单广场"];
     
-    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back:)] animated:YES];
+//    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back:)] animated:YES];
     
     CGFloat width = (CGRectGetWidth(self.view.bounds)-defaultEdgeInsets.left-defaultEdgeInsets.right- (defaultColumnCount - 1)* defaultColumnSpace)/defaultColumnCount;
     
@@ -134,12 +134,11 @@ static long limit = 30;
    
     PlaylistDetailController *detail =[[PlaylistDetailController alloc] init];
     detail.detailId = [item valueForKey:@"_id"];
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:detail];
-    
-    [self presentViewController:navi animated:YES completion:^{
-        NSLog(@"present===PlaylistDetailController");
-    }];
-    
+//    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:detail];
+//    [self presentViewController:navi animated:YES completion:^{
+//        NSLog(@"present===PlaylistDetailController");
+//    }];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 #pragma UIScrollViewDelegate

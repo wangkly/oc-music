@@ -23,7 +23,7 @@ static NSString const *identifier = @"myCell";
     NSLog(@"detailId==viewDidLoad==%@",self.detailId);
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setTitle:@"歌单详情"];
-    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back:)] animated:YES];
+//    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back:)] animated:YES];
     UITableView *playlist = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self setPlaylist:playlist];
     [self.playlist registerClass:[SongItemCell class] forCellReuseIdentifier:identifier];
@@ -105,10 +105,10 @@ static NSString const *identifier = @"myCell";
             
             PlayController *cotrl = [[PlayController alloc] init];
             [cotrl setSongUrl:songUrl];
-            [self presentViewController:[[UINavigationController alloc]initWithRootViewController: cotrl] animated:YES completion:^{
- 
-            }];
-            
+//            [self presentViewController:[[UINavigationController alloc]initWithRootViewController: cotrl] animated:YES completion:^{
+//
+//            }];
+            [self.navigationController pushViewController:cotrl animated:YES];
             
         }];
         

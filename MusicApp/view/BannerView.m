@@ -55,9 +55,9 @@ static UIEdgeInsets const DefaultEdgInsets={10,10,10,10};
 }
 
 -(void)willMoveToSuperview:(UIView *)newSuperview{
-    CGFloat width = CGRectGetWidth(newSuperview.bounds);
-    CGFloat height = 150;
-    [self setFrame:CGRectMake(0, 0, width, height)];
+//    CGFloat width = CGRectGetWidth(newSuperview.bounds);
+//    CGFloat height = 150;
+//    [self setFrame:CGRectMake(0, 0, width, height)];
 }
 
 -(void)showBanner{
@@ -66,7 +66,7 @@ static UIEdgeInsets const DefaultEdgInsets={10,10,10,10};
     [self.scrollView setFrame:self.bounds];
     NSInteger count = self.dataArr.count;
     [self.scrollView setContentSize:CGSizeMake(count * width, height)];
-    [self.pageCtrl setFrame:CGRectMake((width - 100)/2, 120, 100, 20)];
+    [self.pageCtrl setFrame:CGRectMake((width - 100)/2, 130, 100, 20)];
     [self.pageCtrl setNumberOfPages:count];
     [self.pageCtrl setCurrentPage:0];
     [self.pageCtrl addTarget:self action:@selector(pageControlValueChange:) forControlEvents:UIControlEventValueChanged];

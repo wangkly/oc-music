@@ -12,7 +12,7 @@
 #import "MyMusicViewController.h"
 #import "LocalViewController.h"
 
-char * host = "http://192.168.1.103:3000";
+char * host = "http://192.168.1.104:3000";
 
 @interface AppDelegate ()
 
@@ -31,8 +31,13 @@ char * host = "http://192.168.1.103:3000";
     [self.window setRootViewController:tab];
     
     DiscoverViewController *dicover = [[DiscoverViewController alloc] init];
-    [dicover setTitle:@"发现"];
+//    [dicover setTitle:@"发现"];
+    dicover.tabBarItem.title = @"发现";
+    
     dicover.tabBarItem.image=[UIImage imageNamed:@"discovery"];
+    
+    UINavigationController *dicoverNavi = [[UINavigationController alloc] initWithRootViewController:dicover];
+
     MyMusicViewController *my = [[MyMusicViewController alloc] init];
     [my setTitle:@"我的音乐"];
     my.tabBarItem.image=[UIImage imageNamed:@"music"];
@@ -40,7 +45,7 @@ char * host = "http://192.168.1.103:3000";
     [local setTitle:@"本地音乐"];
     local.tabBarItem.image=[UIImage imageNamed:@"my"];
 
-    tab.viewControllers = @[dicover,my,local];
+    tab.viewControllers = @[dicoverNavi,my,local];
     
     [self createCacheImageDir];
     

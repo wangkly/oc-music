@@ -28,7 +28,7 @@ extern char *host;
     [self loadData];
     
     UIButton *btn =  [UIButton buttonWithType:UIButtonTypeSystem];
-    btn.frame =CGRectMake(100, 200, 100, 50);
+    btn.frame =CGRectMake(100, 220, 100, 50);
     [btn setTitle:@"歌单" forState:UIControlStateNormal];
 //    [btn setTitle:@"摸我干啥" forState:UIControlStateHighlighted];
     [btn addTarget:self action:@selector(navigate:) forControlEvents:UIControlEventTouchUpInside];
@@ -45,7 +45,7 @@ extern char *host;
     [self.view addSubview:image];
     
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
-    btn2.frame = CGRectMake(250, 200, 100, 50);
+    btn2.frame = CGRectMake(250, 220, 100, 50);
     [btn2 setTitle:@"跳转" forState:UIControlStateNormal];
     [btn2 addTarget:self action:@selector(presentPlaylistController) forControlEvents:UIControlEventTouchUpInside];
     
@@ -78,6 +78,11 @@ extern char *host;
 -(void)initBanner{
     self.bannerView = [BannerView initHeaderView];
     [self.view addSubview:self.bannerView];
+    CGRect frame = self.view.bounds;
+    CGFloat width = CGRectGetWidth(frame);
+    
+    CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    [self.bannerView setFrame:CGRectMake(0, navigationBarHeight, width, 180)];
 }
 
 -(void)presentPlaylistController{
@@ -110,7 +115,8 @@ extern char *host;
           
             PlaylistGroundController* controller = [[PlaylistGroundController alloc] init];
             [controller setHotCats:temp];
-            [self presentViewController: [[UINavigationController alloc] initWithRootViewController:controller] animated:YES completion:nil];
+//            [self presentViewController: [[UINavigationController alloc] initWithRootViewController:controller] animated:YES completion:nil];
+            [self.navigationController pushViewController:controller animated:YES];
         }];
     }];
     

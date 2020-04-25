@@ -20,7 +20,7 @@ extern char * host;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"歌单广场"];
-    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back)] animated:YES ];
+//    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back)] animated:YES ];
     // Do any additional setup after loading the view.
 }
 
